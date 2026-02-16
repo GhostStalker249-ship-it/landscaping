@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ландшафтный планировщик</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Ландшафтный планировщик</h1>
+      <p>Загрузите фото участка, обработайте его через Nano Banana или Gemini 3 Pro Image API и спланируйте дизайн.</p>
+    </header>
+
+    <main class="layout">
+      <aside class="panel controls">
+        <h2>1. Основа</h2>
+        <label class="upload-field">
+          <span>Фото участка</span>
+          <input id="imageInput" type="file" accept="image/*" />
+        </label>
+
+        <h2>2. Обработка изображения</h2>
+        <div class="processor-switch" role="radiogroup" aria-label="Выбор AI-провайдера">
+          <button id="selectNanoBtn" type="button" class="processor-tab active">Nano Banana</button>
+          <button id="selectGeminiBtn" type="button" class="processor-tab">Gemini 3 Pro Image</button>
+        </div>
+
+        <div id="nanoPanel" class="processor-panel">
+          <label>
+            Nano API URL
+            <input id="nanoApiUrl" type="url" placeholder="https://api.nanobanana.ai/v1/edit" />
+          </label>
+          <label>
+            Nano API Key
+            <input id="nanoApiKey" type="password" placeholder="nb_..." />
+          </label>
+          <label>
+            Промпт обработки
+            <textarea id="nanoPrompt" rows="4" placeholder="Усильте зелень, выровняйте свет, добавьте аккуратные дорожки"></textarea>
+          </label>
+          <button id="nanoProcessBtn" type="button">Обработать через Nano Banana</button>
+          <p id="nanoStatus" class="helper-text">Укажите URL/ключ/промпт и запустите обработку.</p>
+        </div>
+
+        <div id="geminiPanel" class="processor-panel hidden">
+          <label>
+            Gemini API Key
+            <input id="geminiApiKey" type="password" placeholder="AIza..." />
+          </label>
+          <label>
+            Gemini model
+            <input id="geminiModel" type="text" placeholder="gemini-2.5-pro" value="gemini-2.5-pro" />
+          </label>
+          <label>
+            Промпт обработки
+            <textarea id="geminiPrompt" rows="4" placeholder="Сделай более ухоженный ландшафт, усили цвет травы, добавь декоративные зоны"></textarea>
+          </label>
+          <button id="geminiProcessBtn" type="button">Обработать через Gemini 3 Pro Image API</button>
+          <p id="geminiStatus" class="helper-text">Укажите API key и промпт, затем запустите обработку.</p>
+        </div>
+
+        <h2>3. Элементы</h2>
+        <div id="plantLibrary" class="plant-library"></div>
+
+        <h2>4. Настройка выбранного</h2>
+        <div id="selectionControls" class="selection-controls disabled">
+          <label>
+            Масштаб
+            <input id="scaleRange" type="range" min="0.3" max="3" step="0.1" value="1" />
+          </label>
+          <label>
+            Поворот
+            <input id="rotationRange" type="range" min="0" max="360" step="1" value="0" />
+          </label>
+          <div class="actions-row">
+            <button id="bringFrontBtn" type="button">На передний план</button>
+            <button id="sendBackBtn" type="button">На задний план</button>
+          </div>
+          <button id="deleteBtn" type="button" class="danger">Удалить</button>
+        </div>
+
+        <h2>5. Экспорт</h2>
+        <div class="actions-column">
+          <button id="downloadBtn" type="button">Скачать итог PNG</button>
+          <button id="resetBtn" type="button" class="muted">Очистить план</button>
+        </div>
+      </aside>
+
+      <section class="panel workspace">
+        <div class="workspace-header">
+          <h2>План участка</h2>
+          <p>Перетаскивайте элементы мышью. Колёсико мыши — масштаб выбранного элемента.</p>
+        </div>
+        <div id="canvasStage" class="canvas-stage" aria-label="Поле планирования">
+          <canvas id="plannerCanvas" width="1280" height="720"></canvas>
+          <div id="emptyHint" class="empty-hint">Загрузите фотографию участка, чтобы начать планирование.</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
