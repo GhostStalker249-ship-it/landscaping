@@ -9,7 +9,7 @@
   <body>
     <header class="app-header">
       <h1>Ландшафтный планировщик</h1>
-      <p>Загрузите фото участка, обработайте его через NanoBanana и спланируйте будущий дизайн.</p>
+      <p>Загрузите фото участка, обработайте его через Nano Banana или Gemini 3 Pro Image API и спланируйте дизайн.</p>
     </header>
 
     <main class="layout">
@@ -20,26 +20,44 @@
           <input id="imageInput" type="file" accept="image/*" />
         </label>
 
-        <h2>2. Обработка NanoBanana</h2>
-        <div class="nanobanana-panel">
+        <h2>2. Обработка изображения</h2>
+        <div class="processor-switch" role="radiogroup" aria-label="Выбор AI-провайдера">
+          <button id="selectNanoBtn" type="button" class="processor-tab active">Nano Banana</button>
+          <button id="selectGeminiBtn" type="button" class="processor-tab">Gemini 3 Pro Image</button>
+        </div>
+
+        <div id="nanoPanel" class="processor-panel">
           <label>
-            API URL
+            Nano API URL
             <input id="nanoApiUrl" type="url" placeholder="https://api.nanobanana.ai/v1/edit" />
           </label>
           <label>
-            API Key
+            Nano API Key
             <input id="nanoApiKey" type="password" placeholder="nb_..." />
           </label>
           <label>
-            Инструкция обработки
-            <textarea
-              id="nanoPrompt"
-              rows="4"
-              placeholder="Например: усили зелень газона, добавь аккуратные дорожки и выровняй освещение"
-            ></textarea>
+            Промпт обработки
+            <textarea id="nanoPrompt" rows="4" placeholder="Усильте зелень, выровняйте свет, добавьте аккуратные дорожки"></textarea>
           </label>
-          <button id="nanoProcessBtn" type="button">Обработать фото через NanoBanana</button>
-          <p id="nanoStatus" class="helper-text">Укажите URL/ключ и промпт, затем запустите обработку.</p>
+          <button id="nanoProcessBtn" type="button">Обработать через Nano Banana</button>
+          <p id="nanoStatus" class="helper-text">Укажите URL/ключ/промпт и запустите обработку.</p>
+        </div>
+
+        <div id="geminiPanel" class="processor-panel hidden">
+          <label>
+            Gemini API Key
+            <input id="geminiApiKey" type="password" placeholder="AIza..." />
+          </label>
+          <label>
+            Gemini model
+            <input id="geminiModel" type="text" placeholder="gemini-2.5-pro" value="gemini-2.5-pro" />
+          </label>
+          <label>
+            Промпт обработки
+            <textarea id="geminiPrompt" rows="4" placeholder="Сделай более ухоженный ландшафт, усили цвет травы, добавь декоративные зоны"></textarea>
+          </label>
+          <button id="geminiProcessBtn" type="button">Обработать через Gemini 3 Pro Image API</button>
+          <p id="geminiStatus" class="helper-text">Укажите API key и промпт, затем запустите обработку.</p>
         </div>
 
         <h2>3. Элементы</h2>

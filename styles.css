@@ -5,7 +5,6 @@
   --text: #1f2a1f;
   --muted: #556155;
   --brand: #2f7d32;
-  --brand-soft: #d8edd9;
   --border: #d8dfd8;
   --danger: #b94a48;
 }
@@ -70,13 +69,32 @@ body {
 
 .upload-field input,
 .selection-controls input,
-.nanobanana-panel input,
-.nanobanana-panel textarea,
+.processor-panel input,
+.processor-panel textarea,
 button {
   width: 100%;
 }
 
-.nanobanana-panel {
+.processor-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.processor-tab {
+  background: #f0f4f0;
+  color: #224322;
+  border: 1px solid #cdd8cd;
+}
+
+.processor-tab.active {
+  background: #2f7d32;
+  color: #fff;
+  border-color: #2f7d32;
+}
+
+.processor-panel {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -86,15 +104,19 @@ button {
   background: #f7faf7;
 }
 
-.nanobanana-panel label {
+.processor-panel.hidden {
+  display: none;
+}
+
+.processor-panel label {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
   font-size: 0.9rem;
 }
 
-.nanobanana-panel textarea,
-.nanobanana-panel input {
+.processor-panel textarea,
+.processor-panel input {
   border: 1px solid #c7d1c7;
   border-radius: 8px;
   padding: 0.5rem;
