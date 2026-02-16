@@ -1,0 +1,260 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f6f4;
+  --panel: #ffffff;
+  --text: #1f2a1f;
+  --muted: #556155;
+  --brand: #2f7d32;
+  --brand-soft: #d8edd9;
+  --border: #d8dfd8;
+  --danger: #b94a48;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+.app-header {
+  padding: 1rem 1.5rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.app-header p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+}
+
+.controls {
+  max-height: calc(100vh - 130px);
+  overflow: auto;
+}
+
+.controls h2 {
+  font-size: 1rem;
+  margin: 0.9rem 0 0.6rem;
+}
+
+.upload-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+}
+
+.upload-field input,
+.selection-controls input,
+.nanobanana-panel input,
+.nanobanana-panel textarea,
+button {
+  width: 100%;
+}
+
+.nanobanana-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #f7faf7;
+}
+
+.nanobanana-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.nanobanana-panel textarea,
+.nanobanana-panel input {
+  border: 1px solid #c7d1c7;
+  border-radius: 8px;
+  padding: 0.5rem;
+  font-size: 0.86rem;
+  font-family: inherit;
+}
+
+.helper-text {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.helper-text.success {
+  color: #216d2a;
+}
+
+.helper-text.error {
+  color: var(--danger);
+}
+
+.plant-library {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.plant-btn {
+  border: 1px solid var(--border);
+  background: #f7faf7;
+  border-radius: 10px;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+}
+
+.plant-btn:hover {
+  border-color: #b8c5b8;
+  background: #f0f7f0;
+}
+
+.plant-icon {
+  font-size: 1.6rem;
+}
+
+.plant-name {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+.selection-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.selection-controls.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.selection-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.actions-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+button {
+  border: 1px solid transparent;
+  background: var(--brand);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  padding: 0.55rem 0.65rem;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.95);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+button.muted {
+  background: #819281;
+}
+
+button.danger {
+  background: var(--danger);
+}
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  min-height: 680px;
+}
+
+.workspace-header h2 {
+  margin: 0;
+}
+
+.workspace-header p {
+  margin: 0.35rem 0 0.8rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.canvas-stage {
+  position: relative;
+  width: 100%;
+  border: 2px dashed #cad6ca;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f7fbf7 0%, #eef5ee 100%);
+  aspect-ratio: 16 / 9;
+}
+
+#plannerCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.empty-hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .controls {
+    max-height: none;
+  }
+}
